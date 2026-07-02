@@ -28,7 +28,7 @@ router.get('/summary', authenticateToken, async (req: AuthRequest, res: Response
       const activeDiseaseScans = await PlantScan.countDocuments({ diseaseName: { $exists: true, $ne: null } });
       summary = { totalFarmers, totalFarms, activeDiseaseOutbreaks: activeDiseaseScans };
     }
-
+// FIX: Use Role.FARMER instead of the string 'FARMER'
     res.json(summary);
   } catch (error: any) {
     res.status(500).json({ error: error.message });
